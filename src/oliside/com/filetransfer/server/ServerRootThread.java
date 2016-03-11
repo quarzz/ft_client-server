@@ -18,9 +18,10 @@ public class ServerRootThread extends Thread {
             ) {
             while (serverModel.isRunning()) {
                 serverModel.getClientsPool().add(serverSocket.accept());
+                System.out.println("new client send into pool");
             }
         } catch (IOException exc) {
-
+            System.out.println("IO in servroot");
         }
     }
 }

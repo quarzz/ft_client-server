@@ -9,6 +9,7 @@ public class ServerModel {
     public ServerModel(int portNumber) {
         this.portNumber = portNumber;
         this.running = false;
+        this.clientsPool = new ClientsPool();
     }
 
     public void start() {

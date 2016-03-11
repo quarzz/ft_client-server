@@ -1,13 +1,16 @@
 package oliside.com.filetransfer.server;
 
 import java.net.Socket;
-import java.util.Map;
-import java.util.Queue;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class ClientsPool {
-    private TaskList taskList;
+    private ConcurrentHashMap<String, ClientProcessor> processors;
+
+    public ClientsPool() {
+        processors = new ConcurrentHashMap<>();
+    }
 
     public void add(Socket clientSocket) {
-        new ClientProcessor(taskList, clientSocket).start();
+        new ClientProcessor(processors, clientSocket).start();
     }
 }
